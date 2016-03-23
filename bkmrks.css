@@ -1,0 +1,100 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
+html, body {
+  font-size:12px;
+  font-family: 'Roboto';
+  font-weight: 300;
+  background: #EEEEEE;
+  margin: 0;
+  padding: 0;
+}
+
+
+#app {
+  list-style: none outside none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 100vh;
+
+}
+
+#app > li {
+  margin: 1rem;
+  background: #fff;
+  border-radius: 3px;
+  overflow-y: scroll;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  flex: 1 1 auto;
+}
+
+#app > li > h1 {
+  margin-bottom: 2rem;
+}
+
+#app > li:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  transition: all 0.2s ease-in-out;
+}
+
+#app > li > ul > .sublist-title:not(:last-child) {
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 2rem;
+}
+
+
+ul {
+  font-size: 0.8em;
+  list-style: none outside none;
+  padding: 0;
+}
+
+li li {
+  margin-bottom: 0.5rem;
+}
+
+ul ul {
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: white;
+  background: #2196F3;
+  margin:0 0 1rem 0;
+  padding: 1rem 2rem;
+}
+
+ul ul h1 {
+  background: none;
+  color: #2196F3;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+}
+
+ul ul ul h1 {
+  font-size: 1.2rem;
+}
+
+a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: flex;
+  align-items:flex-start;
+  padding: 0 2rem;
+  margin-left: 2rem;
+  color: rgba(0,0,0,.87);
+  max-width: 300px;
+  line-height: 1.4;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+a:hover {
+  text-decoration: underline;
+}
