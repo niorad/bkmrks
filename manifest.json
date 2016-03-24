@@ -10,7 +10,16 @@
   },
 
   "permissions": [
-    "bookmarks"
-  ]
+    "bookmarks", "storage"
+  ],
+
+  "icons": {
+    "128": "icon.png"
+  },
+
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  }
 
 }

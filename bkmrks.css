@@ -22,7 +22,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  height: 97vh;
+  height: calc(100vh - 2rem);
 
 }
 
@@ -103,6 +103,10 @@ a {
   line-height: 1.4;
   background-repeat: no-repeat;
   background-position: left top;
+}
+
+.no-favicon a {
+  padding-left: 0;
 }
 
 a:hover {
