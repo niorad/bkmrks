@@ -12,6 +12,7 @@ html, body {
 body {
   overflow-x: scroll;
   overflow-y: hidden;
+  padding-right: 1rem;
 }
 
 
@@ -35,7 +36,12 @@ body {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+}
 
+#app > .link-item {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  flex: 0 1 auto;
 }
 
 #app > li > h1 {
@@ -54,6 +60,30 @@ body {
   margin-bottom: 2rem;
 }
 
+.sublist-title .sublist-title .sublist-title {
+  margin-left: 2.3rem;
+  padding-left: 1rem;
+  position: relative;
+  border-left: 1px solid #e0e0e0;
+}
+
+.sublist-title .sublist-title .sublist-title ul,
+.sublist-title .sublist-title .sublist-title ul li:not(.sublist-title),
+.sublist-title .sublist-title .sublist-title ul li a,
+.sublist-title .sublist-title .sublist-title h1 {
+  margin-left: 0;
+}
+
+.sublist-title .sublist-title .sublist-title ul,
+.sublist-title .sublist-title .sublist-title ul li:not(.sublist-title),
+.sublist-title .sublist-title .sublist-title h1 {
+  padding-left: 0;
+}
+
+.sublist-title .sublist-title .sublist-title h1 {
+  font-weight: 400;
+
+}
 
 ul {
   font-size: 0.8em;
@@ -79,6 +109,11 @@ h1 {
   padding: 1rem 2rem;
 }
 
+p {
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+}
+
 ul ul h1 {
   background: none;
   color: #2196F3;
@@ -94,8 +129,7 @@ ul ul ul h1 {
 a {
   font-size: 1.2rem;
   text-decoration: none;
-  display: flex;
-  align-items:flex-start;
+  display: inline-block;
   padding: 0 2rem;
   margin-left: 2rem;
   color: rgba(0,0,0,.87);
@@ -109,6 +143,27 @@ a {
   padding-left: 0;
 }
 
-a:hover {
-  text-decoration: underline;
+a:hover span {
+  display: inline;
+  box-shadow:
+    0 -2px 0px -0.5px white inset,
+    0 -2px 0px rgba(0,0,0,.87) inset;
+  text-shadow: 0 0 0px white,
+   1px 0 0px white,
+   2px 0 0px white,
+   -1px 0 0px white,
+   -2px 0 0px white,
+   1px -1px 0px white,
+   2px -1px 0px white,
+   -1px -1px 0px white,
+   -2px -1px 0px white,
+   1px 1px 0px white,
+   2px 1px 0px white,
+   -1px 1px 0px white,
+   -2px 1px 0px white,
+   1px -2px 0px white,
+   2px -2px 0px white,
+   -1px -2px 0px white,
+   -2px -2px 0px white;
+
 }

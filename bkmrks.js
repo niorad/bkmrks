@@ -1,3 +1,4 @@
+'use strict';
 
 chrome.storage.sync.get({
     theme: '2196F3',
@@ -5,13 +6,23 @@ chrome.storage.sync.get({
   }, (items) => {
 
     chrome.bookmarks.getTree((results) => {
+
       let app = document.getElementById('app');
       const themeStyles = `<style>#app>li>h1 {background: #${items.theme};} li li h1 {color: #${items.theme}}</style>`;
 
       if(!items.favicons) {
         app.className = 'no-favicon';
       }
-      app.innerHTML = `${themeStyles} ${renderBookmarks(results[0].children[0].children, items.favicons)}`;
+
+      const bookmarks = results[0].children[0].children;
+
+      console.log(bookmarks);
+
+      if(bookmarks.length > 0) {
+        app.innerHTML = `${themeStyles} ${renderBookmarks(bookmarks, items.favicons)}`;
+      } else {
+        app.innerHTML = '<h1>You have no bookmarks :(</h1><p>To use this extension, please add some bookmarks to Chrome.</p>'
+      }
     });
 
   });
@@ -27,9 +38,9 @@ function renderBookmarks(list, _showFavicons) {
 
   for(let element of list) {
     if(element.children) {
-      returnString = `${returnString}<li class="sublist-title"><h1>${element.title}</h1><ul>${renderBookmarks(element.children, _showFavicons)}</ul></li>`;
+      returnString += `<li class="sublist-title"><h1>${element.title}</h1><ul>${renderBookmarks(element.children, _showFavicons)}</ul></li>`;
     } else {
-      returnString = `${returnString}<li class="link-item"><a style="background-image:url(${_showFavicons ? getFaviconUrl(element.url) : ''});" href="${element.url}">${element.title}</a></li> `;
+      returnString += `<li class="link-item"><a style="background-image:url(${_showFavicons ? getFaviconUrl(element.url) : ''});" href="${element.url}"><span>${element.title}</span></a></li> `;
     }
   }
 
