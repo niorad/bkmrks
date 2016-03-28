@@ -2,8 +2,8 @@
 
   "manifest_version": 2,
   "name": "bkmrks",
-  "description": "A simple New-Tab-Page for displaying all bookmarks on one page.",
-  "version": "1.0",
+  "description": "A simple New-Tab-Page for displaying all your bookmarks on one page.",
+  "version": "1.0.0",
 
   "chrome_url_overrides": {
     "newtab": "bkmrks.html"

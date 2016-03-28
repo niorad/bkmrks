@@ -143,6 +143,12 @@ a {
   padding-left: 0;
 }
 
+a:active {
+  position: relative;
+  top:1px;
+  left:1px;
+}
+
 a:hover span {
   display: inline;
   box-shadow:

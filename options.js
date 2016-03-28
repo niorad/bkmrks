@@ -10,7 +10,7 @@ function save_options() {
   }, function() {
     var status = document.getElementById('status');
     status.textContent = 'Options saved.';
-    setTimeout(() => {
+    setTimeout( () => {
       status.textContent = '';
     }, 750);
   });
@@ -21,7 +21,7 @@ function restore_options() {
   chrome.storage.sync.get({
     theme: '2196F3',
     favicons: true
-  }, function(items) {
+  }, (items) => {
     document.getElementById('color').value = items.theme;
     document.getElementById('show-favicons').checked = items.favicons;
   });
