@@ -7,23 +7,37 @@ class Bkmrks {
     chrome.storage.sync.get({
       theme: '2196F3',
       favicons: true
-    }, (items) => {
+    }, (userPreferenceItems) => {
 
-      chrome.bookmarks.getTree((results) => {
+      const userThemeColor = userPreferenceItems.theme;
+      const showFavicons = userPreferenceItems.favicons;
 
-        let app = document.getElementById('app');
-        const themeStyles = `<style>#app>li>h1 {background: #${items.theme};} li li h1 {color: #${items.theme}}</style>`;
+      chrome.bookmarks.getTree((chromeBookmarks) => {
 
-        if(!items.favicons) {
-          app.className = 'no-favicon';
+        let appContainer = document.getElementById('app');
+
+        const userThemeCss = `
+            #app > li > h1 {
+              background: #${userThemeColor};
+            }
+            li li h1 {
+              color: #${userThemeColor};
+            }
+          `;
+
+        if(!showFavicons) {
+          appContainer.className = 'no-favicon';
         }
 
-        const bookmarks = results[0].children[0].children;
+        const bookmarkList = chromeBookmarks[0].children[0].children;
 
-        if(bookmarks.length > 0) {
-          app.innerHTML = `${themeStyles} ${this.renderBookmarks(bookmarks, items.favicons)}`;
+        if(bookmarkList.length > 0) {
+          appContainer.innerHTML = `<style>${userThemeCss}</style> ${this.renderBookmarks(bookmarkList, showFavicons)}`;
         } else {
-          app.innerHTML = '<h1>You have no bookmarks :(</h1><p>To use this extension, please add some bookmarks to Chrome.</p>'
+          appContainer.innerHTML = `
+            <h1>You have no bookmarks :(</h1>
+            <p>To use this extension, please add some bookmarks to Chrome.</p>
+          `;
         }
       });
     });
@@ -31,23 +45,32 @@ class Bkmrks {
   }
 
 
-  getFaviconUrl(rawUrl) {
-    return `http://www.google.com/s2/favicons?domain=${rawUrl.split('/')[0]}//${rawUrl.split('/')[2]}/`;
-  }
-
-  renderBookmarks(list, _showFavicons) {
+  renderBookmarks(bookmarkList, showFavicons) {
 
     let returnString = '';
 
-    for(let element of list) {
-      if(element.children) {
-        returnString += `<li class="sublist-title"><h1>${element.title}</h1><ul>${this.renderBookmarks(element.children, _showFavicons)}</ul></li>`;
+    for(let bookmark of bookmarkList) {
+      if(bookmark.children) {
+        returnString += `
+          <li class="sublist-title">
+            <h1>${bookmark.title}</h1>
+            <ul>${this.renderBookmarks(bookmark.children, showFavicons)}</ul>
+          </li>`;
       } else {
-        returnString += `<li class="link-item"><a style="background-image:url(${_showFavicons ? this.getFaviconUrl(element.url) : ''});" href="${element.url}"><span>${element.title}</span></a></li> `;
+        returnString += `
+          <li class="link-item">
+            <a style="background-image:url(${showFavicons ? this.getFaviconUrl(bookmark.url) : ''});" href="${bookmark.url}">
+              <span>${bookmark.title}</span>
+            </a>
+          </li> `;
       }
     }
 
     return returnString;
+  }
+
+  getFaviconUrl(rawUrl) {
+    return `http://www.google.com/s2/favicons?domain=${rawUrl.split('/')[0]}//${rawUrl.split('/')[2]}/`;
   }
 
 }
