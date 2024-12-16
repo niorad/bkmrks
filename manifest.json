@@ -1,25 +1,26 @@
 {
+	"manifest_version": 3,
+	"name": "bkmrks",
+	"description": "A simple New-Tab-Page for displaying all your bookmarks on one page.",
+	"version": "2.0.0",
 
-  "manifest_version": 2,
-  "name": "bkmrks",
-  "description": "A simple New-Tab-Page for displaying all your bookmarks on one page.",
-  "version": "1.0.0",
+	"chrome_url_overrides": {
+		"newtab": "bkmrks.html"
+	},
 
-  "chrome_url_overrides": {
-    "newtab": "bkmrks.html"
-  },
+	"permissions": ["bookmarks", "storage"],
 
-  "permissions": [
-    "bookmarks", "storage"
-  ],
+	"icons": {
+		"128": "icon.png"
+	},
 
-  "icons": {
-    "128": "icon.png"
-  },
+	"options_ui": {
+		"page": "options.html"
+	},
 
-  "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
-  }
-
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "{cceaa13e-f963-4046-b764-5a2a0d228f7c}"
+		}
+	}
 }
